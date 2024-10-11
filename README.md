@@ -26,6 +26,9 @@ https://github.com/webashlar/Chatbot-TestTask-UI/blob/main/docx/chatbot.webm
 ### Install Dependencies
     cd Chatbot-TestTask-UI
     npm install
+    
+### Update API endoint here
+https://github.com/webashlar/Chatbot-TestTask-UI/blob/main/src/helper/analyzeNextSteps.ts#L1
 
 ### Run application
     npm start
