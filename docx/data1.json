@@ -1,0 +1,80 @@
+[
+  {
+    "step": 0,
+    "purpose": "specify field",
+    "message": "Nice to meet you, {userResponse}! It feels like I know you already. We have some job positions for you. Which of these call out to you?",
+    "options": ["Frontend", "Backend", "Full Stack"]
+  },
+  {
+    "step": 1,
+    "purpose": "specify technologies",
+    "message": "Great choice! Which technologies are you familiar with?",
+    "conditional": [
+      { "userResponse": "Frontend", "options": ["React", "Next.js"] },
+      { "userResponse": "Backend", "options": ["Node.js", "MongoDB"] },
+      { "userResponse": "Full Stack", "options": ["MERN", "MEAN", "Other"] }
+    ]
+  },
+  {
+    "step": 2,
+    "purpose": "specify experience",
+    "message": "That's cool! Could you describe your experience in that field?"
+  },
+  {
+    "step": 3,
+    "purpose": "specify projects",
+    "message": "Did you do any projects that you're proud of? Can you tell me more about them? (class projects are cool too...)"
+  },
+  {
+    "step": 4,
+    "purpose": "specify personality",
+    "message": "Thanks for telling me that. Let's get personal... (just kidding). Could you tell me about yourself? How would you describe your personality?"
+  },
+  {
+    "step": 5,
+    "purpose": "prompt company info",
+    "message": "Do you want me to explain what we do?",
+    "options": ["Yeah sure!", "Meh, I'll pass"]
+  },
+  {
+    "step": 6,
+    "purpose": "conditional company info",
+    "message": "Well",
+    "conditional": [
+      {
+        "userResponse": "Yeah sure!",
+        "message": "Oh yay! This is what we do...",
+        "options": ["Keep going."]
+      },
+      {
+        "userResponse": "Meh, I'll pass",
+        "message": "Aww... Well I guess you know what we do already.",
+        "options": ["Keep going."]
+      }
+    ]
+  },
+  {
+    "step": 7,
+    "purpose": "specify reason to work",
+    "message": "Now that you know what we do, how about you tell me why you want to work for us?"
+  },
+  {
+    "step": 8,
+    "purpose": "specify hobbies",
+    "message": "Alright, noted! One last question before we finish, besides coding/working, what do you do?"
+  },
+  {
+    "step": 9,
+    "purpose": "specify email",
+    "message": "That sounds awesome! Right, it looks like we've got your application set. I would need your email to contact you if you're a good fit for this role!"
+  },
+  {
+    "step": 10,
+    "purpose": "end",
+    "message": "Thank you so much for spending time chatting with me. Good luck with the application process! I hope we can meet soon. Bye!"
+  },
+  {
+    "step": "bye",
+    "message": "Bye!"
+  }
+]

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ChatBoxComponent.css";
-import { analyzeNextSteps, stepsData } from "../../helper/analyzeNextSteps";
+import { analyzeNextSteps, rootURL } from "../../helper/analyzeNextSteps";
 import Chats from "../chats/Chats";
 import SendIcon from "@mui/icons-material/Send";
 import { useParams } from "react-router-dom";
@@ -28,7 +28,7 @@ const Chatbot: React.FC = () => {
     const fetchConversionData = async () => {
       try {
         const response = await fetch(
-          `https://4d5a-103-250-151-79.ngrok-free.app/api/v1/conversion/fetchconversion/${id}`
+          `${rootURL}/api/v1/conversion/fetchconversion/${id}`
         );
 
         if (!response.ok) {
@@ -44,8 +44,6 @@ const Chatbot: React.FC = () => {
 
     fetchConversionData();
   }, [id]);
-
-  console.log("currentBot", currentBot);
 
   const setNextStep = (response: string) => {
     setStep((prevState) => prevState + 1);

@@ -7,10 +7,12 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
+import { rootURL } from "../../helper/analyzeNextSteps";
 
 interface CustomModalProps {
   isOpen: boolean;
   onClose: () => void;
+  setIsFetched: any;
 }
 
 const style = {
@@ -25,7 +27,11 @@ const style = {
   p: 4,
 };
 
-const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onClose }) => {
+const CustomModal: React.FC<CustomModalProps> = ({
+  isOpen,
+  onClose,
+  setIsFetched,
+}) => {
   const [title, setTitle] = React.useState("");
   const [jsonFile, setJsonFile] = React.useState<File | null>(null);
   const [uploadMessage, setUploadMessage] = React.useState<string>("");
@@ -56,9 +62,12 @@ const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onClose }) => {
     try {
       // Make the API request
       const response = await fetch(
-        "https://4d5a-103-250-151-79.ngrok-free.app/api/v1/conversion/createconversion",
+        `${rootURL}/api/v1/conversion/createconversion`,
         {
           method: "POST",
+          headers: {
+            "ngrok-skip-browser-warning": "69420",
+          },
           body: formData,
         }
       );
@@ -69,13 +78,18 @@ const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onClose }) => {
       }
 
       const data = await response.json();
-      console.log("Success:", data);
+      setIsFetched(true);
+      onClose();
+
       // Handle success (e.g., show a message, update state, etc.)
     } catch (error: any) {
       setErrorMessage(`Submission failed: ${error.message}`);
+      onClose();
     } finally {
       resetState();
       setLoading(false);
+      setIsFetched(true);
+      onClose();
     }
   };
 

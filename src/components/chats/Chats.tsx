@@ -60,6 +60,7 @@ const Chats: React.FC<Props> = (props) => {
     }
   }, [messages]);
 
+
   return (
     <div className="message-container" ref={bodyRef}>
       {messages.map((chat) => (
