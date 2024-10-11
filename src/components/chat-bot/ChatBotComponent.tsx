@@ -28,9 +28,15 @@ const Chatbot: React.FC = () => {
     const fetchConversionData = async () => {
       try {
         const response = await fetch(
-          `${rootURL}/api/v1/conversion/fetchconversion/${id}`
+          `${rootURL}/api/v1/conversion/fetchconversion/${id}`,
+          {
+            method: "GET", // Specify method
+            headers: {
+              "ngrok-skip-browser-warning": "69420",
+              "Content-Type": "application/json", // Include if expecting JSON response
+            },
+          }
         );
-
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -66,6 +72,7 @@ const Chatbot: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (userResponse.length === 0) return;
     setNextStep(userResponse);
   };
 
@@ -82,8 +89,14 @@ const Chatbot: React.FC = () => {
           placeholder="Type here..."
           onChange={(e) => handleInputChange(e)}
           value={userResponse}
+          required
         />
-        <SendIcon />
+        <SendIcon
+          style={{
+            cursor: "pointer",
+          }}
+          onClick={(e) => handleSubmit(e)}
+        />
       </form>
     </div>
   );
